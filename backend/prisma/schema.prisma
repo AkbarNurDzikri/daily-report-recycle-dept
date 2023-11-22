@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id
+  username String @unique
+  password String
+  nama_lengkap String
+  nama_ibu_kandung String
+  aktif Boolean @default(true)
+
+  @@map("users")
+}
+
+model MasterMesin {
+  id String @id
+  nama_mesin String
+  created_at DateTime @default(now())
+  properties MesinProperties[]
+}
+
+model MesinProperties {
+  id String @id
+  id_mesin String
+  nama_property String
+  nilai_property String
+  mesin MasterMesin @relation(fields: [id_mesin], references: [id])
+}
