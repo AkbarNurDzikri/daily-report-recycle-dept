@@ -7,12 +7,19 @@ import { useNavigate } from 'react-router-dom';
 const LoginPengguna = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const formHandler = async (e) => {
     e.preventDefault();
-    const result = await servisLogin(username, password);
-    if(result === 'success') navigate('/dashboard');
+
+    try {
+      setIsLoading(true);
+      const result = await servisLogin(username, password);
+      if(result === 'success') navigate('/dashboard');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -22,6 +29,7 @@ const LoginPengguna = () => {
       username={username}
       setPassword={setPassword}
       password={password}
+      isLoading={isLoading}
     />
   )
 }

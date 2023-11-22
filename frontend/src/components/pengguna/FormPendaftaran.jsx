@@ -1,6 +1,7 @@
-import { Container, FloatingLabel, Form, Button } from 'react-bootstrap';
+import { Container, FloatingLabel, Form, Button, Spinner } from 'react-bootstrap';
 import { PersonLock, Key, KeyFill, Type, Fingerprint } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 const FormPendaftaran = ({
   formHandler,
@@ -13,8 +14,14 @@ const FormPendaftaran = ({
   setNamaLengkap,
   namaLengkap,
   setNamaIbuKandung,
-  namaIbuKandung
+  namaIbuKandung,
+  isLoading
 }) => {
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  useEffect(() => {
+    isLoading ? setButtonDisabled(true) : setButtonDisabled(false);
+  } , [isLoading])
+
   return (
     <Container className='d-flex align-items-center justify-content-center' style={{height: '100vh'}}>
       <Form onSubmit={formHandler}>
@@ -88,8 +95,8 @@ const FormPendaftaran = ({
           <Form.Control type="text" placeholder="Nama Ibu Kandung" autoComplete='off' value={namaIbuKandung} onChange={(e) => setNamaIbuKandung(e.target.value)} required />
         </FloatingLabel>
 
-        <Button variant="primary" type='submit' className='w-100'>
-          Daftar
+        <Button variant="primary" type='submit' className='w-100' disabled={buttonDisabled}>
+          {isLoading ? <Spinner /> : 'Daftar'}
         </Button>
         <p className='text-center mt-2' style={{fontSize: '0.8rem'}}>
           <span>Sudah punya akun?</span> &nbsp;

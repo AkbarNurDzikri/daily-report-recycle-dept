@@ -1,14 +1,21 @@
-import { Container, FloatingLabel, Form, Button } from 'react-bootstrap';
+import { Container, FloatingLabel, Form, Button, Spinner } from 'react-bootstrap';
 import { PersonLock, Key } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 const FormLogin = ({
   formHandler,
   setUsername,
   username,
   setPassword,
-  password
+  password,
+  isLoading
 }) => {
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  useEffect(() => {
+    isLoading ? setButtonDisabled(true) : setButtonDisabled(false);
+  }, [isLoading])
+
   return (
     <Container className='d-flex align-items-center justify-content-center' style={{height: '100vh'}}>
       <Form onSubmit={formHandler}>
@@ -38,8 +45,8 @@ const FormLogin = ({
           <Form.Control type="password" placeholder="Password" autoComplete='off' value={password} onChange={(e) => setPassword(e.target.value)} required />
         </FloatingLabel>
 
-        <Button variant="primary" type='submit' className='w-100'>
-          Login
+        <Button variant="primary" type='submit' className='w-100' disabled={buttonDisabled}>
+          {isLoading ? <Spinner /> : 'Login'}
         </Button>
         <p className='text-center mt-2' style={{fontSize: '0.8rem'}}>
           <span>Belum punya akun?</span> &nbsp;

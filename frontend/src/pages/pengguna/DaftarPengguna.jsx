@@ -10,25 +10,30 @@ const DaftarPengguna = () => {
   const [konfirmPassword, setKonfirmPassword] = useState('');
   const [namaLengkap, setNamaLengkap] = useState('');
   const [namaIbuKandung, setNamaIbuKandung] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const formHandler = async (e) => {
     e.preventDefault();
 
-
-    if(password !== konfirmPassword) return Swal.fire({
-      icon: "error",
-      title: "Konfirmasi password tidak sesuai !"
-    });
-    
-    const result = await servisPendaftaran(username, password, namaLengkap, namaIbuKandung);
-    if(result === 'success') {
-      setUsername('');
-      setPassword('');
-      setKonfirmPassword('');
-      setNamaLengkap('');
-      setNamaIbuKandung('');
-      navigate('/login');
+    try {
+      setIsLoading(true);
+      if(password !== konfirmPassword) return Swal.fire({
+        icon: "error",
+        title: "Konfirmasi password tidak sesuai !"
+      });
+      
+      const result = await servisPendaftaran(username, password, namaLengkap, namaIbuKandung);
+      if(result === 'success') {
+        setUsername('');
+        setPassword('');
+        setKonfirmPassword('');
+        setNamaLengkap('');
+        setNamaIbuKandung('');
+        navigate('/login');
+      }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -47,6 +52,8 @@ const DaftarPengguna = () => {
       konfirmPassword={konfirmPassword}
       namaLengkap={namaLengkap}
       namaIbuKandung={namaIbuKandung}
+
+      isLoading={isLoading}
     />
   )
 }
