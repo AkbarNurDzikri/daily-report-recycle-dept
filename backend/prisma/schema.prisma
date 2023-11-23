@@ -23,7 +23,7 @@ model User {
 
 model MasterMesin {
   id String @id
-  nama_mesin String
+  nama_mesin String @unique
   created_at DateTime @default(now())
   properties MesinProperties[]
 }

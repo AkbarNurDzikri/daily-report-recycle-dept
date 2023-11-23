@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Container, Spinner } from 'react-bootstrap';
+import { Modal, Container } from 'react-bootstrap';
 import TableMasterMesin from '../../components/master/mesin/TableMasterMesin.jsx';
 import NavbarComponent from '../../components/layouts/NavbarComponent.jsx';
 import JudulHalaman from '../../components/layouts/JudulHalaman.jsx';
@@ -21,7 +21,10 @@ const MasterMesin = () => {
     try {
       setIsLoading(true);
       const result = await servisCreateMesin(namaMesin);
-      if(result === 'success') setNamaMesin('');
+      if(result === 'success') {
+        setNamaMesin('');
+        handleClose();
+      }
     } finally {
       setIsLoading(false);
     }

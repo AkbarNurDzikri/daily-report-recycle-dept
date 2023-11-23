@@ -16,7 +16,7 @@ const FormMasterMesin = ({
     <>
       <Form onSubmit={formHandler} className='d-flex flex-column'>
         <FloatingLabel controlId='namaMesin' label='Nama Mesin' className='mb-3'>
-          <Form.Control type="text" placeholder="Nama Mesin" value={namaMesin} onChange={(e) => setNamaMesin(e.target.value)} autoComplete='off' required />
+          <Form.Control type="text" placeholder="Nama Mesin" value={namaMesin} onChange={(e) => setNamaMesin(e.target.value)} autoComplete='off' required autoFocus />
         </FloatingLabel>
 
         <div className="d-flex justify-content-end">

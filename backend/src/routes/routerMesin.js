@@ -1,7 +1,8 @@
 import express from 'express';
-import controllerMasterMesin from '../controllers/master/controllerMasterMesin.js';
+import { createMasterMesin, getAllMasterMesin } from '../controllers/master/controllerMasterMesin.js';
 
 const routerMesin = express.Router();
-routerMesin.post('/master/mesin', controllerMasterMesin);
+routerMesin.post('/master/mesin', createMasterMesin);
+routerMesin.get('/master/mesin', getAllMasterMesin);
 
 export default routerMesin;
