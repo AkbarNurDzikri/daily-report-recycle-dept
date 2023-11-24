@@ -5,7 +5,8 @@ const FormMasterMesin = ({
   namaMesin,
   setNamaMesin,
   formHandler,
-  isLoading
+  isLoading,
+  textButton
 }) => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   useEffect(() => {
@@ -21,7 +22,7 @@ const FormMasterMesin = ({
 
         <div className="d-flex justify-content-end">
           <Button variant="primary" type='submit' className='btn-sm w-25' disabled={buttonDisabled}>
-            {isLoading ? <Spinner /> : 'Simpan'}
+            {isLoading ? <Spinner /> : textButton}
           </Button>
         </div>
       </Form>

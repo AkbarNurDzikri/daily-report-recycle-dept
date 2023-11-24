@@ -8,3 +8,6 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/master/mesin
+
+###
+GET http://localhost:5000/master/mesin/0efe9037-b133-47a0-a9c1-fdaed69cdd68

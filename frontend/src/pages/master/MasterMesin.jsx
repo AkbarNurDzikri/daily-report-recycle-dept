@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import TableMasterMesin from '../../components/master/mesin/TableMasterMesin.jsx';
 import NavbarComponent from '../../components/layouts/NavbarComponent.jsx';
 import JudulHalaman from '../../components/layouts/JudulHalaman.jsx';
 import TombolBuatMasterMesin from '../../components/master/mesin/TombolBuatMasterMesin.jsx';
-import FormMasterMesin from '../../components/master/mesin/FormMasterMesin';
+import ModalForm from  '../../components/master/mesin/ModalForm.jsx';
 import servisCreateMesin from  '../../services/master/mesin/servisCreateMesin.js';
 import getAllMesin from '../../services/master/mesin/servisGetAllMesin.js';
 
@@ -13,6 +13,7 @@ const MasterMesin = () => {
   const [namaMesin, setNamaMesin] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [machines, setMachines] = useState(null);
+  const [textButton, setTextButton] = useState('');
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -48,28 +49,36 @@ const MasterMesin = () => {
     <>
       <NavbarComponent />
       <Container style={{marginTop: '75px'}}>
-        <div className='d-flex justify-content-between align-items-center' style={{borderBottom: '1px solid black'}}>
-          <JudulHalaman judulHalaman='Master Mesin' />
-          <TombolBuatMasterMesin handleShow={handleShow} />
+        <JudulHalaman judulHalaman='Master Mesin' />
+        
+        <div className="d-flex justify-content-end">
+          <TombolBuatMasterMesin handleShow={handleShow} setTextButton={setTextButton} />
         </div>
-        <div className='mt-3'>
-          <TableMasterMesin machines={machines} />
-        </div>
-      </Container>
 
-      <Modal show={showModal} onHide={handleClose} backdrop="static" keyboard={false} >
-        <Modal.Header closeButton>
-          <Modal.Title>Tambah Mesin</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <FormMasterMesin
+        <div className='mt-3'>
+          <TableMasterMesin  
+            machines={machines}
+            handleShow={handleShow}
+            showModal={showModal}
+            handleClose={handleClose}
             namaMesin={namaMesin}
             setNamaMesin={setNamaMesin}
             formHandler={formHandler}
             isLoading={isLoading}
-          />
-        </Modal.Body>
-      </Modal>
+            setTextButton={setTextButton}
+        />
+        </div>
+      </Container>
+
+      <ModalForm
+        showModal={showModal}
+        handleClose={handleClose}
+        namaMesin={namaMesin}
+        setNamaMesin={setNamaMesin}
+        formHandler={formHandler}
+        isLoading={isLoading}
+        textButton={textButton}
+      />
     </>
   )
 }

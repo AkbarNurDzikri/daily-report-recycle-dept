@@ -1,6 +1,7 @@
 import createMesin from "../../services/master/mesin/createMesin.js";
 import getAllMesin from "../../services/master/mesin/getAllMesin.js";
 import cariMesin from "../../services/master/mesin/cariMesin.js";
+import getMesinById from "../../services/master/mesin/getMesinById.js";
 
 const createMasterMesin = async (req, res) => {
   const mesinEksis = await cariMesin(req.body.namaMesin);
@@ -22,7 +23,16 @@ const getAllMasterMesin = async (req, res) => {
   return res.status(200).json({data: result});
 }
 
+const getUniqueMesin = async (req, res) => {
+  const id = req.params.id;
+  const result = await getMesinById(id);
+  if(typeof result !== 'object') return res.status(500).json({errors: result});
+
+  return res.status(200).json({data: result});
+};
+
 export {
   createMasterMesin,
   getAllMasterMesin,
+  getUniqueMesin
 }

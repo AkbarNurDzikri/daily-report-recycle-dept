@@ -16,8 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/' element={<DaftarPengguna />} />
         <Route path='/login' element={<LoginPengguna />} />
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/laporan' element={<Laporan />} />
-        <Route path='/master/mesin' element={<MasterMesin />} />
+        <Route path='/report' element={<Laporan />} />
+        <Route path='/master/machines' element={<MasterMesin />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

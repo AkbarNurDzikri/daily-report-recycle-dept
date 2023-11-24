@@ -22,7 +22,7 @@ const FormLogin = ({
         <Card.Body>
           <Form onSubmit={formHandler} className='my-4 mx-3'>
             <FloatingLabel controlId='username' label='Username' className='mb-2' >
-              <Form.Control type="text" placeholder="Username" required value={username} onChange={(e) => setUsername(e.target.value)} />
+              <Form.Control type="text" placeholder="Username" autoComplete='off' required value={username} onChange={(e) => setUsername(e.target.value)} />
             </FloatingLabel>
 
             <FloatingLabel controlId='password' label='Password' className='mb-2' >

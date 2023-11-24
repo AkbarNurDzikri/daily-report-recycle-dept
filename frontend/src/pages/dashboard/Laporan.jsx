@@ -30,7 +30,7 @@ const Laporan = () => {
         <div className='d-flex align-items-center justify-content-center'>
           <JudulHalaman judulHalaman='DAILY REPORT RECYCLE' />
         </div>
-        <div className='d-flex align-items-center justify-content-center pb-2' style={{borderBottom: '1px solid black'}}>
+        <div className='d-flex align-items-center justify-content-center pb-2'>
           <TombolExportLaporan />
           <ParameterTanggalLaporan
             setParamDariTgl={setParamDariTgl}
