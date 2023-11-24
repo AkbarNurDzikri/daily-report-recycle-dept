@@ -18,6 +18,12 @@ const DaftarPengguna = () => {
 
     try {
       setIsLoading(true);
+
+      if(username.includes(' ')) return Swal.fire({
+        icon: "error",
+        title: "Username tidak boleh mengandung spasi !"
+      });
+
       if(password !== konfirmPassword) return Swal.fire({
         icon: "error",
         title: "Konfirmasi password tidak sesuai !"

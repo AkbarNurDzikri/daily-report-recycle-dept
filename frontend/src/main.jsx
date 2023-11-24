@@ -7,7 +7,7 @@ import Dashboard from './pages/dashboard/Dashboard.jsx';
 import Laporan from './pages/dashboard/Laporan.jsx';
 import MasterMesin from './pages/master/MasterMesin.jsx';
 
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

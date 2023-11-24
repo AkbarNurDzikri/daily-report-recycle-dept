@@ -17,7 +17,9 @@ const createMasterMesin = async (req, res) => {
 
 const getAllMasterMesin = async (req, res) => {
   const result = await getAllMesin();
-  console.log(result);
+  if(typeof result !== 'object') return res.status(500).json({errors: result});
+
+  return res.status(200).json({data: result});
 }
 
 export {

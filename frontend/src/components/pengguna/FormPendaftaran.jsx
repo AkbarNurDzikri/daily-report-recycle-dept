@@ -1,7 +1,6 @@
-import { Container, FloatingLabel, Form, Button, Spinner } from 'react-bootstrap';
-import { PersonLock, Key, KeyFill, Type, Fingerprint } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { Container, Card, Form, FloatingLabel, Button, Spinner } from 'react-bootstrap';
 
 const FormPendaftaran = ({
   formHandler,
@@ -18,93 +17,50 @@ const FormPendaftaran = ({
   isLoading
 }) => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
+
   useEffect(() => {
     isLoading ? setButtonDisabled(true) : setButtonDisabled(false);
-  } , [isLoading])
+  }, [isLoading])
 
   return (
-    <Container className='d-flex align-items-center justify-content-center' style={{height: '100vh'}}>
-      <Form onSubmit={formHandler}>
-        <FloatingLabel
-          controlId='username'
-          label={
-            <span>
-              <PersonLock className='me-3' />
-              Username
-            </span>
-          }
-          className='mb-3'
-        >
-          <Form.Control type="text" placeholder="Username" autoComplete='off' value={username} onChange={(e) => {
-            const noSpacesValue = e.target.value.replace(/\s/g, '');
-            setUsername(noSpacesValue)}
-          } required autoFocus />
-        </FloatingLabel>
+    <Container className='d-flex justify-content-center align-items-center' style={{minHeight: '100vh'}}>
+      <Card className='d-flex justify-content-center align-items-center' style={{backgroundColor: '#00A9FF'}}>
+        <Card.Body>
+          <Form onSubmit={formHandler} className='my-4 mx-3'>
+            <FloatingLabel controlId='namaLengkap' label='Nama Lengkap' className='mb-2' >
+              <Form.Control type="text" placeholder="Nama Lengkap" required value={namaLengkap} onChange={(e) => setNamaLengkap(e.target.value)} />
+            </FloatingLabel>
 
-        <FloatingLabel
-          controlId='password'
-          label={
-            <span>
-              <Key className='me-3' />
-              Password
-            </span>
-          }
-          className='mb-3'
-        >
-          <Form.Control type="password" placeholder="Password" autoComplete='off' value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </FloatingLabel>
+            <FloatingLabel controlId='namaIbuKandung' label='Nama Ibu Kandung' className='mb-2' >
+              <Form.Control type="text" placeholder="Nama Ibu Kandung" required value={namaIbuKandung} onChange={(e) => setNamaIbuKandung(e.target.value)} />
+            </FloatingLabel>
 
-        <FloatingLabel
-          controlId='konfirmasiPassword'
-          label={
-            <span>
-              <KeyFill className='me-3' />
-              Konfirmasi Password
-            </span>
-          }
-          className='mb-3'
-        >
-          <Form.Control type="password" placeholder="Konfirmasi Password" autoComplete='off' value={konfirmPassword} onChange={(e) => {
-            setKonfirmPassword(e.target.value);
-          }} required />
-        </FloatingLabel>
+            <FloatingLabel controlId='username' label='Username' className='mb-2' >
+              <Form.Control type="text" placeholder="Username" required value={username} onChange={(e) => setUsername(e.target.value)} />
+            </FloatingLabel>
 
-        <FloatingLabel
-          controlId='namaLengkap'
-          label={
-            <span>
-              <Type className='me-3' />
-              Nama Lengkap
-            </span>
-          }
-          className='mb-3'
-        >
-          <Form.Control type="text" placeholder="Nama Lengkap" autoComplete='off' value={namaLengkap} onChange={(e) => setNamaLengkap(e.target.value)} required />
-        </FloatingLabel>
+            <FloatingLabel controlId='password' label='Password' className='mb-2' >
+              <Form.Control type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            </FloatingLabel>
 
-        <FloatingLabel
-          controlId='namaIbuKandung'
-          label={
-            <span>
-              <Fingerprint className='me-3' />
-              Nama Ibu Kandung
-            </span>
-          }
-          className='mb-3'
-        >
-          <Form.Control type="text" placeholder="Nama Ibu Kandung" autoComplete='off' value={namaIbuKandung} onChange={(e) => setNamaIbuKandung(e.target.value)} required />
-        </FloatingLabel>
+            <FloatingLabel controlId='konfirmPassword' label='Konfirm Password' className='mb-2' >
+              <Form.Control type="password" placeholder="Konfirm Password" required value={konfirmPassword} onChange={(e) => setKonfirmPassword(e.target.value)} />
+            </FloatingLabel>
 
-        <Button variant="primary" type='submit' className='w-100' disabled={buttonDisabled}>
-          {isLoading ? <Spinner /> : 'Daftar'}
-        </Button>
-        <p className='text-center mt-2' style={{fontSize: '0.8rem'}}>
-          <span>Sudah punya akun?</span> &nbsp;
-          <Link to='/login' >Login</Link>
-        </p>
-      </Form>
+            <Button type='submit' className='w-100 btn-dark' disabled={buttonDisabled}>
+              {
+                isLoading ? <Spinner /> : 'Daftar'
+              }
+            </Button>
+
+            <p className='text-white text-center mt-2' style={{fontSize: '0.9rem'}}>
+              Sudah punya akun? <Link to='/login' className='text-dark text-decoration-none'><b>Login</b></Link>
+            </p>
+          </Form>
+        </Card.Body>
+      </Card>
     </Container>
   )
 }
 
-export default FormPendaftaran
+export default FormPendaftaran;

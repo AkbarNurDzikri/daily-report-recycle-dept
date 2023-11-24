@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, Container } from 'react-bootstrap';
 import TableMasterMesin from '../../components/master/mesin/TableMasterMesin.jsx';
 import NavbarComponent from '../../components/layouts/NavbarComponent.jsx';
@@ -6,11 +6,13 @@ import JudulHalaman from '../../components/layouts/JudulHalaman.jsx';
 import TombolBuatMasterMesin from '../../components/master/mesin/TombolBuatMasterMesin.jsx';
 import FormMasterMesin from '../../components/master/mesin/FormMasterMesin';
 import servisCreateMesin from  '../../services/master/mesin/servisCreateMesin.js';
+import getAllMesin from '../../services/master/mesin/servisGetAllMesin.js';
 
 const MasterMesin = () => {
   const [showModal, setShowModal] = useState(false);
   const [namaMesin, setNamaMesin] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [machines, setMachines] = useState(null);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -24,11 +26,23 @@ const MasterMesin = () => {
       if(result === 'success') {
         setNamaMesin('');
         handleClose();
+
+        const updatedMachines = await getAllMesin();
+        setMachines(updatedMachines);
       }
     } finally {
       setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getAllMesin();
+      setMachines(result);
+    }
+
+    fetchData();
+  }, [])
 
   return (
     <>
@@ -39,7 +53,7 @@ const MasterMesin = () => {
           <TombolBuatMasterMesin handleShow={handleShow} />
         </div>
         <div className='mt-3'>
-          <TableMasterMesin />
+          <TableMasterMesin machines={machines} />
         </div>
       </Container>
 
