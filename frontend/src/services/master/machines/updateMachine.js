@@ -1,10 +1,10 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const createMachineService = async (machineName) => {
+const updateMachine = async (machineId, machineName) => {
   try {
     const data = {machineName};
-    const result = await axios.post('http://localhost:5000/master/machine', data, {
+    const result = await axios.patch(`http://localhost:5000/master/machine/${machineId}`, data, {
       headers: {
         "Content-Type": "application/json"
       }
@@ -46,4 +46,4 @@ const createMachineService = async (machineName) => {
   }
 }
 
-export default createMachineService;
+export default updateMachine;

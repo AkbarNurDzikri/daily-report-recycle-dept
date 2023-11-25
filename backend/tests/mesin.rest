@@ -10,4 +10,12 @@ Content-Type: application/json
 GET http://localhost:5000/master/mesin
 
 ###
-GET http://localhost:5000/master/mesin/0efe9037-b133-47a0-a9c1-fdaed69cdd68
+GET http://localhost:5000/master/machine/0a9963cd-1bc6-4da0-9fde-05b2da9bd222
+
+###
+PATCH http://localhost:5000/master/machine/9b4eb37c-2c69-4721-ab8e-383c14a1b10d
+Content-Type: application/json
+
+{
+  "machineName": "Mesin Baru"
+}

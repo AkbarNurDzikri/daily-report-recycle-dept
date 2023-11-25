@@ -15,4 +15,25 @@ const cariMesin = async (machineName) => {
   }
 }
 
-export default cariMesin;
+const cariMesinKecuali = async (id, machineName) => {
+  try {
+    return await Prisma.masterMesin.findFirst({
+      where: {
+        nama_mesin: machineName,
+        NOT: {
+          id
+        }
+      },
+      select: {
+        nama_mesin: true
+      }
+    })
+  } catch (error) {
+    return error.message;
+  }
+}
+
+export {
+  cariMesin,
+  cariMesinKecuali
+}

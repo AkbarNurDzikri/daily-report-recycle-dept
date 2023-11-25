@@ -8,8 +8,8 @@ const ModalForm = ({
   buttonTextForm,
   machineName,
   setMachineName,
-  machines,
-  setMachines
+  setMachines,
+  machineId
 }) => {
   return (
     <>
@@ -22,9 +22,9 @@ const ModalForm = ({
             machineName={machineName}
             setMachineName={setMachineName}
             buttonTextForm={buttonTextForm}
-            machines={machines}
             setMachines={setMachines}
             handleCloseModal={handleCloseModal}
+            machineId={machineId}
           />
         </Modal.Body>
       </Modal>

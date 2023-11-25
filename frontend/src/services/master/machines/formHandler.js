@@ -1,15 +1,23 @@
-import createMachineService from  './createMachineService.js';
 import getAllMesin from './getAllMachines.js';
+import createMachine from  './createMachine.js';
+import updateMachine from './updateMachine.js';
 
-const formHandler = async (e, machineName, setMachines, handleCloseModal) => {
+const formHandler = async (e, machineName, setMachines, handleCloseModal, machineId, buttonTextForm) => {
   e.preventDefault();
 
-  const result = await createMachineService(machineName);
-  if(result === 'success') {
-    const updatedData = await getAllMesin();
-    setMachines(updatedData);
-    handleCloseModal();
-    return 'success';
+  switch(buttonTextForm) {
+    case 'Simpan':
+      await createMachine(machineName);
+      const refreshData = await getAllMesin();
+      setMachines(refreshData);
+      handleCloseModal();
+      break;
+    case 'Update':
+      await updateMachine(machineId, machineName);
+      const updatedData = await getAllMesin();
+      setMachines(updatedData);
+      handleCloseModal();
+      break;
   }
 }
 

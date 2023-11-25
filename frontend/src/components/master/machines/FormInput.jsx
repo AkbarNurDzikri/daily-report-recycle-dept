@@ -7,9 +7,9 @@ const FormInput = ({
   machineName,
   setMachineName,
   buttonTextForm,
-  machines,
   setMachines,
-  handleCloseModal
+  handleCloseModal,
+  machineId
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false);
@@ -18,7 +18,7 @@ const FormInput = ({
     try {
       setIsLoading(true);
       setDisabledButton(true);
-      await formHandler(e, machineName, setMachines, handleCloseModal);
+      await formHandler(e, machineName, setMachines, handleCloseModal, machineId, buttonTextForm);
     } finally {
       setIsLoading(false);
       setDisabledButton(false);
@@ -32,6 +32,7 @@ const FormInput = ({
             type="text"
             placeholder="Nama Mesin"
             autoComplete='off'
+            autoFocus
             required
             value={machineName}
             onChange={(e) => setMachineName(e.target.value)} />
