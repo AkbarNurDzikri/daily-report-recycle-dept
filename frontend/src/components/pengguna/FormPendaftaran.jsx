@@ -28,7 +28,7 @@ const FormPendaftaran = ({
         <Card.Body>
           <Form onSubmit={formHandler} className='my-4 mx-3'>
             <FloatingLabel controlId='namaLengkap' label='Nama Lengkap' className='mb-2' >
-              <Form.Control type="text" placeholder="Nama Lengkap" autoComplete='off' required value={namaLengkap} onChange={(e) => setNamaLengkap(e.target.value)} />
+              <Form.Control type="text" placeholder="Nama Lengkap" autoComplete='off' required autoFocus value={namaLengkap} onChange={(e) => setNamaLengkap(e.target.value)} />
             </FloatingLabel>
 
             <FloatingLabel controlId='namaIbuKandung' label='Nama Ibu Kandung' className='mb-2' >

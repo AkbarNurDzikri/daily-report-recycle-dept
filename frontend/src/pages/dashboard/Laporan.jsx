@@ -1,6 +1,5 @@
 import { Container, Row } from 'react-bootstrap';
 import NavbarComponent from "../../components/layouts/NavbarComponent.jsx";
-import JudulHalaman from '../../components/layouts/JudulHalaman.jsx';
 import TombolBuatLaporan from '../../components/laporan/TombolBuatLaporan.jsx'
 import TombolExportLaporan from '../../components/laporan/TombolExportLaporan.jsx'
 import ParameterTanggalLaporan from '../../components/laporan/ParameterTanggalLaporan.jsx';
@@ -28,7 +27,6 @@ const Laporan = () => {
       <NavbarComponent />
       <Container style={{marginTop: '75px'}}>
         <div className='d-flex align-items-center justify-content-center'>
-          <JudulHalaman judulHalaman='DAILY REPORT RECYCLE' />
         </div>
         <div className='d-flex align-items-center justify-content-center pb-2'>
           <TombolExportLaporan />

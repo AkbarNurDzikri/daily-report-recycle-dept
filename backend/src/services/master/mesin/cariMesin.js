@@ -1,10 +1,10 @@
 import Prisma from "../../../app/database.js";
 
-const cariMesin = async (namaMesin) => {
+const cariMesin = async (machineName) => {
   try {
     return await Prisma.masterMesin.findFirst({
       where: {
-        nama_mesin: namaMesin
+        nama_mesin: machineName
       },
       select: {
         nama_mesin: true
